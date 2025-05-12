@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VISION SHOP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #FF3A4A;
+      --primary-dark: #D62E3D;
+      --dark: #121212;
+      --darker: #0A0A0A;
+      --gray: #1E1E1E;
+      --light: #FFFFFF;
+      --text: rgba(255, 255, 255, 0.9);
+      --text-secondary: rgba(255, 255, 255, 0.6);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--dark);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--darker) 0%, var(--gray) 100%);
+      padding: 4rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 3rem;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), transparent);
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--light);
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+      text-shadow: 0 0 10px rgba(255, 58, 74, 0.3);
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px rgba(255, 58, 74, 0.3);
+      }
+      to {
+        text-shadow: 0 0 15px rgba(255, 58, 74, 0.5);
+      }
+    }
+
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+
+    .subtitle {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Game Cards */
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 25px;
+      margin-bottom: 4rem;
+    }
+
+    .game-card {
+      background: var(--gray);
+      border-radius: 12px;
+      padding: 1.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .game-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      border-color: rgba(255, 58, 74, 0.3);
+    }
+
+    .game-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--primary);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--primary);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      z-index: 2;
+    }
+
+    .game-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--light);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .game-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      background: rgba(255, 58, 74, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+    }
+
+    .price-tag {
+      background: rgba(255, 58, 74, 0.15);
+      color: var(--primary);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .developer {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 1.5rem;
+    }
+
+    .badge {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-secondary);
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .features-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    .features-list {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+
+    .features-list li {
+      padding: 0.5rem 0;
+      position: relative;
+      padding-left: 1.8rem;
+    }
+
+    .features-list li::before {
+      content: '•';
+      color: var(--primary);
+      font-size: 1.5rem;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--primary);
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      width: 100%;
+      text-align: center;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 58, 74, 0.3);
+    }
+
+    .btn svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    /* Why Us Section */
+    .why-us {
+      background: var(--darker);
+      padding: 3rem;
+      border-radius: 12px;
+      margin-bottom: 3rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .why-us h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.8rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-card {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .feature-icon {
+      background: rgba(255, 58, 74, 0.1);
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .feature-content h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-content p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    /* FAQ Section */
+    .faq {
+      margin-bottom: 3rem;
+    }
+
+    .faq h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.8rem;
+    }
+
+    .faq-item {
+      background: var(--gray);
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .faq-question {
+      padding: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .faq-answer {
+      padding: 0 1.2rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      color: var(--text-secondary);
+    }
+
+    .faq-answer.active {
+      padding-bottom: 1.2rem;
+      max-height: 300px;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--darker);
+      padding: 3rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-column h3 {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .footer-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s;
+      font-size: 0.9rem;
+    }
+
+    .footer-link:hover {
+      color: var(--primary);
+    }
+
+    .payment-methods {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .payment-method {
+      width: 40px;
+      height: 25px;
+      background: var(--gray);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-text {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-link {
+      color: var(--text-secondary);
+      transition: color 0.3s;
+    }
+
+    .social-link:hover {
+      color: var(--primary);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        padding: 3rem 0;
+      }
+      
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      .game-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>VISION SHOP</h1>
+      <p class="subtitle">Премиум модификации для ваших любимых игр с передовыми функциями</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="game-grid">
+      <!-- Fortnite -->
+      <div class="game-card">
+        <div class="popular-badge">Популярно</div>
+        <h3 class="game-title">
+          <span class="game-icon"><i class="fas fa-parachute-box"></i></span>
+          Fortnite
+        </h3>
+        <div class="price-tag">1300₽ / месяц</div>
+        <p class="developer">Разработчик: Fidanzza</p>
+        
+        <div class="badges">
+          <span class="badge">Epic Games Launcher</span>
+          <span class="badge">EAC/BE</span>
+          <span class="badge">Оконный режим</span>
+        </div>
+        
+        <h4 class="features-title">Основные функции</h4>
+        <ul class="features-list">
+          <li>ESP игроков (оружие, скелет, боксы, линии)</li>
+          <li>ESP ботов</li>
+          <li>Радар с настройками</li>
+          <li>Умный аимбот (настройка FOV, скорости)</li>
+          <li>Полная кастомизация интерфейса</li>
+          <li>Паник-кнопка для экстренного отключения</li>
+        </ul>
+        
+        <button class="btn">
+          <svg viewBox="0 0 24 24" width="16" height="16">
+            <path d="M17 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM7 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"></path>
+            <path d="M17 18H7V4H5v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-2v14z"></path>
+            <path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2h8z"></path>
+          </svg>
+          Выбрать подписку
+        </button>
+      </div>
+
+      <!-- Unturned -->
+      <div class="game-card">
+        <h3 class="game-title">
+          <span class="game-icon"><i class="fas fa-skull"></i></span>
+          Unturned
+        </h3>
+        <div class="price-tag">500₽ / месяц</div>
+        <p class="developer">Разработчик: XandrDev</p>
+        
+        <div class="badges">
+          <span class="badge">Steam</span>
+          <span class="badge">BE</span>
+          <span class="badge">Оконный режим</span>
+        </div>
+        
+        <h4 class="features-title">Основные функции</h4>
+        <ul class="features-list">
+          <li>ESP игроков, зомби, животных</li>
+          <li>Фильтрация и подсветка лута</li>
+          <li>Настройки цветов и прозрачности</li>
+          <li>Радар с настраиваемым радиусом</li>
+        </ul>
+        
+        <button class="btn">
+          <svg viewBox="0 0 24 24" width="16" height="16">
+            <path d="M17 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM7 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"></path>
+            <path d="M17 18H7V4H5v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-2v14z"></path>
+            <path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2h8z"></path>
+          </svg>
+          Выбрать подписку
+        </button>
+      </div>
+
+      <!-- Escape From Tarkov -->
+      <div class="game-card">
+        <div class="popular-badge">Хит продаж</div>
+        <h3 class="game-title">
+          <span class="game-icon"><i class="fas fa-helmet-battle"></i></span>
+          Escape From Tarkov
+        </h3>
+        <div class="price-tag">3000₽ / месяц</div>
+        <p class="developer">Разработчик: 64com</p>
+        
+        <div class="badges">
+          <span class="badge">EFT + Arena</span>
+          <span class="badge">Полный функционал</span>
+        </div>
+        
+        <h4 class="features-title">Основные функции</h4>
+        <ul class="features-list">
+          <li>Отображение лута, трупов, выходов</li>
+          <li>Отключение отдачи и стамины</li>
+          <li>Точный аимбот с настройками</li>
+          <li>Детализированный ESP игроков</li>
+          <li>Фильтры ценных предметов</li>
+        </ul>
+        
+        <button class="btn">
+          <svg viewBox="0 0 24 24" width="16" height="16">
+            <path d="M17 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM7 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"></path>
+            <path d="M17 18H7V4H5v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-2v14z"></path>
+            <path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2h8z"></path>
+          </svg>
+          Выбрать подписку
+        </button>
+      </div>
+
+      <!-- PUBG Mobile -->
+      <div class="game-card">
+        <h3 class="game-title">
+          <span class="game-icon"><i class="fas fa-mobile-alt"></i></span>
+          PUBG Mobile
+        </h3>
+        <div class="price-tag">900₽ / месяц</div>
+        <p class="developer">Разработчик: Fidanzza</p>
+        
+        <div class="badges">
+          <span class="badge">Мобильная версия</span>
+          <span class="badge">Полный ESP</span>
+        </div>
+        
+        <h4 class="features-title">Основные функции</h4>
+        <ul class="features-list">
+          <li>ESP игроков с настройками</li>
+          <li>Умный аимбот с автоподбором цели</li>
+          <li>Фильтрация и подсветка лута</li>
+          <li>Радар с настраиваемым радиусом</li>
+          <li>Настройки прозрачности и цветов</li>
+        </ul>
+        
+        <button class="btn">
+          <svg viewBox="0 0 24 24" width="16" height="16">
+            <path d="M17 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM7 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"></path>
+            <path d="M17 18H7V4H5v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-2v14z"></path>
+            <path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2h8z"></path>
+          </svg>
+          Выбрать подписку
+        </button>
+      </div>
+
+      <!-- Counter-Strike 2 -->
+      <div class="game-card">
+        <h3 class="game-title">
+          <span class="game-icon"><i class="fas fa-crosshairs"></i></span>
+          Counter-Strike 2
+        </h3>
+        <div class="price-tag">650₽ / месяц</div>
+        <p class="developer">Разработчики: R4andom, RASTAMAN</p>
+        
+        <div class="badges">
+          <span class="badge">Steam</span>
+          <span class="badge">VAC</span>
+          <span class="badge">Полный чит</span>
+        </div>
+        
+        <h4 class="features-title">Основные функции</h4>
+        <ul class="features-list">
+          <li>Аимбот с Autowall и настройками</li>
+          <li>ESP игроков и наблюдателей</li>
+          <li>Триггербот с задержкой</li>
+          <li>Кастомизация меню и интерфейса</li>
+          <li>Настройки FOV и сглаживания</li>
+        </ul>
+        
+        <button class="btn">
+          <svg viewBox="0 0 24 24" width="16" height="16">
+            <path d="M17 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM7 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"></path>
+            <path d="M17 18H7V4H5v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-2v14z"></path>
+            <path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2h8z"></path>
+          </svg>
+          Выбрать подписку
+        </button>
+      </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+      <h2>Частые вопросы</h2>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleAnswer(this)">
+          <span>Как происходит оплата и активация?</span>
+          <span>+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Оплата доступна через FunPay или напрямую (со скидкой). После оплаты вы получаете ключ активации и инструкцию по установке.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleAnswer(this)">
+          <span>Как часто обновляются читы?</span>
+          <span>+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Обновления выходят в течение 24-48 часов после выхода патчей игр. Все пользователи получают уведомления о необходимости обновить версию.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <div class="footer-links">
+            <a href="https://telegra.ph/Polzovatelskoe-soglashenie--User-agreement-05-12" class="footer-link">Пользовательское соглашение</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div class="social-links">
+          <a href="https://discord.gg/EbkasqYp5X" class="social-link">Discord</a>
+        </div>
+        <p class="footer-text">Оплата возможна через FunPay или напрямую (со скидкой). Скины +15% от суммы.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAnswer(question) {
+      const answer = question.nextElementSibling;
+      answer.classList.toggle('active');
+      
+      const icon = question.querySelector('span:last-child');
+      if (answer.classList.contains('active')) {
+        icon.textContent = '-';
+      } else {
+        icon.textContent = '+';
+      }
+    }
+  </script>
+</body>
+</html>
